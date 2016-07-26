@@ -1,0 +1,21 @@
+{
+  "name": "bim",
+  "version": "0.0.1",
+  "description": "foo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "foo"
+  },
+  "keywords": [
+    "bimap",
+    "bijection",
+    "bidirectional",
+    "map"
+  ],
+  "author": "Anton Veselyev <anton.veselyev@gmail.com> (https://github.com/inker)",
+  "license": "ISC"
+}
