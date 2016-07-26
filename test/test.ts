@@ -1,6 +1,6 @@
-import { BiMap } from '../src/bimap';
+import Bim from '../src/bimap';
 
-const m = new BiMap<string, number>();
+const m = new Bim<string, number>();
 m.set("foo", 3);
 m.set("bar", 12);
 m.set("qux", 10);

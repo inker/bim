@@ -1,5 +1,5 @@
 /// <reference path="../typings/tsd.d.ts" />;
-export class BiMap<K, V> implements Map<K, V> {
+export default class Bim<K, V> implements Map<K, V> {
     private left: Map<K, V>;
     private right: Map<V, K>;
 
