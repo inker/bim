@@ -81,4 +81,5 @@ var Bim = (function () {
     };
     return Bim;
 }());
-module.exports = Bim;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = Bim;
