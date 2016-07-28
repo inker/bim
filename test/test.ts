@@ -1,4 +1,4 @@
-import Bim from '../src/bimap';
+import Bim from '../src/bim';
 
 const m = new Bim<string, number>();
 m.set("foo", 3);
