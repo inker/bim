@@ -1,6 +1,6 @@
 /// <reference path="./typings/lib.es6.d.ts" />
 declare module "bim" {
-    export default class Bim<K, V> {
+    export class BiMap<K, V> {
         clear(): void;
         delete(key: K): boolean;
         entries(): IterableIterator<[K, V]>;
@@ -16,5 +16,16 @@ declare module "bim" {
         deleteValue(value: V): boolean;
         getKey(value: V): K;
         hasValue(value: V): boolean;
+    }
+
+    export class WeakBiMap<K, V> {
+        delete(key: K): boolean;
+        get(key: K): V;
+        has(key: K): boolean;
+        set(key: K, value?: V): Map<K, V>;
+        [Symbol.toStringTag]: string;
+        deleteValue(value: V): boolean;
+        getKey(value: V): K;
+        hasValue(value: V): boolean;        
     }
 }

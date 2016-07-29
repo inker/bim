@@ -95,9 +95,6 @@ var WeakBiMap = (function () {
             this.right.set(v, k);
         }
     }
-    WeakBiMap.prototype.clear = function () {
-        console.error('method clear is deprecated');
-    };
     WeakBiMap.prototype.delete = function (key) {
         var val = this.left.get(key);
         if (!this.right.has(val)) {
