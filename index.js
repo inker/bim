@@ -1,15 +1,16 @@
 "use strict";
-var Bim = (function () {
-    function Bim(iterable) {
+var BiMap = (function () {
+    function BiMap(iterable) {
+        var _this = this;
         this.left = new Map(iterable);
         this.right = new Map();
-        this.left.forEach(this.right.set);
+        this.left.forEach(function (i) { return _this.right.set(i); });
     }
-    Bim.prototype.clear = function () {
+    BiMap.prototype.clear = function () {
         this.left.clear();
         this.right.clear();
     };
-    Bim.prototype.delete = function (key) {
+    BiMap.prototype.delete = function (key) {
         var val = this.left.get(key);
         if (!this.right.has(val)) {
             return false;
@@ -17,22 +18,22 @@ var Bim = (function () {
         this.right.delete(val);
         return this.left.delete(key);
     };
-    Bim.prototype.entries = function () {
+    BiMap.prototype.entries = function () {
         return this.left.entries();
     };
-    Bim.prototype.forEach = function (callbackfn, thisArg) {
+    BiMap.prototype.forEach = function (callbackfn, thisArg) {
         this.left.forEach(callbackfn, thisArg);
     };
-    Bim.prototype.get = function (key) {
+    BiMap.prototype.get = function (key) {
         return this.left.get(key);
     };
-    Bim.prototype.has = function (key) {
+    BiMap.prototype.has = function (key) {
         return this.left.has(key);
     };
-    Bim.prototype.keys = function () {
+    BiMap.prototype.keys = function () {
         return this.left.keys();
     };
-    Bim.prototype.set = function (key, value) {
+    BiMap.prototype.set = function (key, value) {
         var oldVal = this.left.get(key);
         var oldKey = this.right.get(value);
         if (this.left.has(key)) {
@@ -45,27 +46,27 @@ var Bim = (function () {
         this.right.set(value, key);
         return this;
     };
-    Object.defineProperty(Bim.prototype, "size", {
+    Object.defineProperty(BiMap.prototype, "size", {
         get: function () {
             return this.left.size;
         },
         enumerable: true,
         configurable: true
     });
-    Bim.prototype.values = function () {
+    BiMap.prototype.values = function () {
         return this.left.values();
     };
-    Bim.prototype[Symbol.iterator] = function () {
+    BiMap.prototype[Symbol.iterator] = function () {
         return this.left[Symbol.iterator]();
     };
-    Object.defineProperty(Bim.prototype, Symbol.toStringTag, {
+    Object.defineProperty(BiMap.prototype, Symbol.toStringTag, {
         get: function () {
             return this.left[Symbol.toStringTag];
         },
         enumerable: true,
         configurable: true
     });
-    Bim.prototype.deleteValue = function (value) {
+    BiMap.prototype.deleteValue = function (value) {
         var key = this.right.get(value);
         if (!this.left.has(key)) {
             return false;
@@ -73,13 +74,78 @@ var Bim = (function () {
         this.left.delete(key);
         return this.right.delete(value);
     };
-    Bim.prototype.getKey = function (value) {
+    BiMap.prototype.getKey = function (value) {
         return this.right.get(value);
     };
-    Bim.prototype.hasValue = function (value) {
+    BiMap.prototype.hasValue = function (value) {
         return this.right.has(value);
     };
-    return Bim;
+    return BiMap;
 }());
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Bim;
+exports.BiMap = BiMap;
+var WeakBiMap = (function () {
+    function WeakBiMap(iterable) {
+        this.left = new WeakMap();
+        this.right = new WeakMap();
+        if (iterable === undefined)
+            return;
+        for (var _i = 0, _a = iterable; _i < _a.length; _i++) {
+            var _b = _a[_i], k = _b[0], v = _b[1];
+            this.left.set(k, v);
+            this.right.set(v, k);
+        }
+    }
+    WeakBiMap.prototype.clear = function () {
+        console.error('method clear is deprecated');
+    };
+    WeakBiMap.prototype.delete = function (key) {
+        var val = this.left.get(key);
+        if (!this.right.has(val)) {
+            return false;
+        }
+        this.right.delete(val);
+        return this.left.delete(key);
+    };
+    WeakBiMap.prototype.get = function (key) {
+        return this.left.get(key);
+    };
+    WeakBiMap.prototype.has = function (key) {
+        return this.left.has(key);
+    };
+    WeakBiMap.prototype.set = function (key, value) {
+        var oldVal = this.left.get(key);
+        var oldKey = this.right.get(value);
+        if (this.left.has(key)) {
+            this.right.delete(oldVal);
+        }
+        if (this.right.has(value)) {
+            this.left.delete(oldKey);
+        }
+        this.left.set(key, value);
+        this.right.set(value, key);
+        return this;
+    };
+    Object.defineProperty(WeakBiMap.prototype, Symbol.toStringTag, {
+        get: function () {
+            return this.left[Symbol.toStringTag];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    WeakBiMap.prototype.deleteValue = function (value) {
+        var key = this.right.get(value);
+        if (!this.left.has(key)) {
+            return false;
+        }
+        this.left.delete(key);
+        return this.right.delete(value);
+    };
+    WeakBiMap.prototype.getKey = function (value) {
+        return this.right.get(value);
+    };
+    WeakBiMap.prototype.hasValue = function (value) {
+        return this.right.has(value);
+    };
+    return WeakBiMap;
+}());
+exports.WeakBiMap = WeakBiMap;
