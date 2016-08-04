@@ -1,4 +1,3 @@
-/// <reference path="./typings/lib.es6.d.ts" />
 declare module "bim" {
     export class BiMap<K, V> {
         clear(): void;

@@ -8,7 +8,8 @@ npm install bim
 
 ## Usage
 ```javascript
-const bim = new Bim();
+import { BiMap } from 'bim';
+const bim = new BiMap();
 bim.set(5, "foo");
 bim.set(6, "bar");
 bim.get(6); // "bar"
