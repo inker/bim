@@ -10,7 +10,7 @@ npm install --save bim
 ```
 
 ## Usage
-The same as normal `Map` & `WeakMap`, plus the `getKey`, `hasValue` & `deleteValue` methods.
+Same as normal `Map` & `WeakMap`, plus the `getKey`, `hasValue` & `deleteValue` methods.
 ```javascript
 import { WeakBiMap } from 'bim'
 
