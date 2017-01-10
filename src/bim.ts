@@ -1,5 +1,3 @@
-/// <reference path="../typings/tsd.d.ts" />;
-
 export class BiMap<K, V> implements Map<K, V> {
     private left: Map<K, V>;
     private right: Map<V, K>;
@@ -66,11 +64,11 @@ export class BiMap<K, V> implements Map<K, V> {
         return this.left.values();
     }
 
-    [Symbol.iterator]():IterableIterator<[K,V]> {
+    [Symbol.iterator]() {
         return this.left[Symbol.iterator]();
     }
 
-    get [Symbol.toStringTag](): string {
+    get [Symbol.toStringTag]() {
         return this.left[Symbol.toStringTag];
     }
 
@@ -141,7 +139,7 @@ export class WeakBiMap<K, V> implements WeakMap<K, V> {
         return this;   
     }
 
-    get [Symbol.toStringTag](): string {
+    get [Symbol.toStringTag]() {
         return this.left[Symbol.toStringTag];
     }
 

@@ -1,10 +1,12 @@
 {
   "name": "bim",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "A bidirectional map based on the ES6 Map object containing additional methods to retrive keys by values, delete key-value pairs by values and check the existence of keys by values.",
   "main": "index.js",
+  "types": "lib/bim.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -14,7 +16,8 @@
     "bimap",
     "bijection",
     "bidirectional",
-    "map"
+    "map",
+    "weakmap"
   ],
   "author": "Anton Veselyev <inker.gh@gmail.com> (https://github.com/inker)",
   "license": "ISC"

@@ -4,7 +4,11 @@
         "module": "commonjs",
         "sourceMap": false,
         "watch": true,
-        "noLib": true
+        "pretty": true,
+        "lib": [ "dom", "es7" ],
+        "declaration": true,
+        "alwaysStrict": true,
+        "outDir": "lib"
     },
-    "exclude": [ "node_modules" ]
+    "exclude": [ "node_modules", "test" ]
 }

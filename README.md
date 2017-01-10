@@ -1,21 +1,40 @@
 # bim
-A bidirectional map based on the ES6 Map object containing additional methods to retrive keys by values, delete key-value pairs by values and check the existence of keys by values.
+A bidirectional map based on the ES6 Map object containing additional methods to retrive keys by values, delete key-value pairs by values and check the existence of keys by values. The module contains two classes: `BiMap` & `WeakBiMap` based on `Map` & `WeakMap` respectively. 
 
 ## Installation
 ```
-npm install bim
+npm install --save bim
 ```
 
 ## Usage
+The same as normal `Map` & `WeakMap`, plus the `getKey`, `hasValue` & `deleteValue` methods.
 ```javascript
-import { BiMap } from 'bim';
-const bim = new BiMap();
-bim.set(5, "foo");
-bim.set(6, "bar");
-bim.get(6); // "bar"
-bim.delete(6);
-bim.set(1, "qux");
-bim.getKey("qux");
-bim.set(2, "aaa");
-bim.set(1, "foo");
+import { WeakBiMap } from 'bim'
+
+// create objects to use as keys
+const a = {
+  i: 'foo',
+  j: 8,
+}
+const b = {
+  k: 'bar',
+  p: 11,
+}
+
+// create the bidirectional weak map
+const wbm = new WeakBiMap()
+
+wbm.set(a, 5)
+wbm.set(b, 6)
+wbm.deleteValue(5) // now only has { k: 'bar', p: 11 } => 6
+wbm.hasValue(5) // false
+
+const c = {
+  h: 'quux',
+  z: 100,
+}
+
+wbm.set(c, 7)
+wbm.hasValue(7) // true
+wbm.getKey(7) // { h: 'quux', z: 100 }
 ```
