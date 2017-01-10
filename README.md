@@ -1,4 +1,7 @@
 # bim
+[![NPM version][npm-img]][npm-url]
+[![Dependency Status][daviddm-img]][daviddm-url]
+[![devDependency Status][daviddm-dev-img]][daviddm-dev-url]
 A bidirectional map based on the ES6 Map object containing additional methods to retrive keys by values, delete key-value pairs by values and check the existence of keys by values. The module contains two classes: `BiMap` & `WeakBiMap` based on `Map` & `WeakMap` respectively. 
 
 ## Installation
