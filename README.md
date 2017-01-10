@@ -1,7 +1,7 @@
 # bim
-[![NPM version][npm-img]][npm-url]
-[![Dependency Status][daviddm-img]][daviddm-url]
-[![devDependency Status][daviddm-dev-img]][daviddm-dev-url]
+
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url]
+
 A bidirectional map based on the ES6 Map object containing additional methods to retrive keys by values, delete key-value pairs by values and check the existence of keys by values. The module contains two classes: `BiMap` & `WeakBiMap` based on `Map` & `WeakMap` respectively. 
 
 ## Installation
@@ -41,3 +41,11 @@ wbm.set(c, 7)
 wbm.hasValue(7) // true
 wbm.getKey(7) // { h: 'quux', z: 100 }
 ```
+
+[npm-url]: https://npmjs.org/package/bim
+[downloads-image]: http://img.shields.io/npm/dm/bim.svg
+[npm-image]: http://img.shields.io/npm/v/bim.svg
+[david-dm-url]:https://david-dm.org/inker/bim
+[david-dm-image]:https://david-dm.org/inker/bim.svg
+[david-dm-dev-url]:https://david-dm.org/inker/bim#info=devDependencies
+[david-dm-dev-image]:https://david-dm.org/inker/bim/dev-status.svg
