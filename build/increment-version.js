@@ -10,5 +10,4 @@ function execAndPipe(command) {
 const package = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
 package.version = package.version.replace(/\^(d+?\.\d+?\.)(\d+?)$/g, (match, $1, $2) => `${$1}${+$2+1}`)
 fs.writeFileSync('./package.json', JSON.stringify(package, null, 2), 'utf8')
-
-execAndPipe('/buid/publish.sh')
+console.log(package.version)

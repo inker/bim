@@ -1,10 +1,9 @@
 #!/bin/bash
 
 npm update
-
-VERSION=$(node --eval "console.log(require('./package.json').version);")
-
 npm run build
+
+VERSION=$(node ./increment-version)
 
 git add .
 git commit -m "v$VERSION"
