@@ -10,5 +10,3 @@ git add .
 git commit -m "v$VERSION"
 git tag v$VERSION -f
 git push
-
-npm publish
