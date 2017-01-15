@@ -43,16 +43,17 @@ export class BiMap<K, V> implements Map<K, V> {
     }
     
     set(key: K, value: V): this {
-        const oldVal = this.left.get(key)
-        const oldKey = this.right.get(value)
-        if (this.left.has(key)) {
-            this.right.delete(oldVal)
+        const { left, right } = this
+        const oldVal = left.get(key)
+        const oldKey = right.get(value)
+        if (left.has(key)) {
+            right.delete(oldVal)
         }
-        if (this.right.has(value)) {
-            this.left.delete(oldKey)
+        if (right.has(value)) {
+            left.delete(oldKey)
         }
-        this.left.set(key, value)
-        this.right.set(value, key)
+        left.set(key, value)
+        right.set(value, key)
         return this
     }
 
@@ -128,16 +129,17 @@ export class WeakBiMap<K, V> implements WeakMap<K, V> {
     }
 
     set(key: K, value: V): this {
-        const oldVal = this.left.get(key)
-        const oldKey = this.right.get(value)
-        if (this.left.has(key)) {
-            this.right.delete(oldVal)
+        const { left, right } = this
+        const oldVal = left.get(key)
+        const oldKey = right.get(value)
+        if (left.has(key)) {
+            right.delete(oldVal)
         }
-        if (this.right.has(value)) {
-            this.left.delete(oldKey)
+        if (right.has(value)) {
+            left.delete(oldKey)
         }
-        this.left.set(key, value)
-        this.right.set(value, key)
+        left.set(key, value)
+        right.set(value, key)
         return this   
     }
 
