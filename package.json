@@ -1,6 +1,6 @@
 {
   "name": "bim",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A bidirectional map based on the ES6 Map object containing additional methods to retrive keys by values, delete key-value pairs by values and check the existence of keys by values.",
   "main": "index.js",
   "types": "lib/bim.d.ts",
