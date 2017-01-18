@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
-        "sourceMap": false,
+        "sourceMap": true,
         // "watch": true,
         "pretty": true,
         "lib": [ "dom", "es7" ],
