@@ -1,6 +1,6 @@
 {
   "name": "bim",
-  "version": "1.0.15",
+  "version": "1.1.1",
   "description": "A bidirectional map based on the ES6 Map & WeakMap objects",
   "main": "index.js",
   "types": "lib/bim.d.ts",
@@ -23,6 +23,6 @@
   "author": "Anton Veselyev <inker.gh@gmail.com> (https://github.com/inker)",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^2.1.5"
+    "typescript": "^2.2.1"
   }
 }
