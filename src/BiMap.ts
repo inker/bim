@@ -3,8 +3,7 @@ export default class BiMap<K, V> implements Map<K, V> {
   private right: Map<V, K>
 
   constructor(iterable?: Iterable<[K, V]>) {
-      // @ts-ignore
-      this.left = new Map<K, V>(iterable)
+      this.left = new Map<K, V>(iterable as Iterable<[K, V]>)
       this.right = new Map<V, K>()
       for (const [k, v] of this.left) {
           this.right.set(v, k)
@@ -17,12 +16,10 @@ export default class BiMap<K, V> implements Map<K, V> {
   }
 
   delete(key: K): boolean {
-      const val = this.left.get(key)
-      // @ts-ignore
+      const val = this.left.get(key) as V
       if (!this.right.has(val)) {
           return false
       }
-      // @ts-ignore
       this.right.delete(val)
       return this.left.delete(key)
   }
@@ -49,14 +46,12 @@ export default class BiMap<K, V> implements Map<K, V> {
   
   set(key: K, value: V): this {
       const { left, right } = this
-      const oldVal = left.get(key)
-      const oldKey = right.get(value)
+      const oldVal = left.get(key) as V
+      const oldKey = right.get(value) as K
       if (left.has(key)) {
-          // @ts-ignore
           right.delete(oldVal)
       }
       if (right.has(value)) {
-          // @ts-ignore
           left.delete(oldKey)
       }
       left.set(key, value)
@@ -80,22 +75,20 @@ export default class BiMap<K, V> implements Map<K, V> {
       return this.left[Symbol.toStringTag]
   }
 
-  deleteValue(value: V) {
-      const key = this.right.get(value)
-      // @ts-ignore
+  deleteValue(value: V): boolean {
+      const key = this.right.get(value) as K
       if (!this.left.has(key)) {
           return false
       }
-      // @ts-ignore
       this.left.delete(key)
       return this.right.delete(value)        
   }
 
-  getKey(value: V) {
+  getKey(value: V): K | undefined {
       return this.right.get(value)
   }
 
-  hasValue(value: V) {
+  hasValue(value: V): boolean {
       return this.right.has(value)
   }
 }

@@ -8,7 +8,7 @@ export default class WeakBiMap<K extends object, V extends object> implements We
       if (iterable === undefined) {
           return
       }
-      for (let [k, v] of iterable as any) {
+      for (let [k, v] of iterable) {
           this.left.set(k, v)
           this.right.set(v, k)
       }
@@ -19,12 +19,10 @@ export default class WeakBiMap<K extends object, V extends object> implements We
   }
 
   delete(key: K): boolean {
-      const val = this.left.get(key)
-      // @ts-ignore
+      const val = this.left.get(key) as V
       if (!this.right.has(val)) {
           return false
       }
-      // @ts-ignore
       this.right.delete(val)
       return this.left.delete(key)
   }
@@ -39,14 +37,12 @@ export default class WeakBiMap<K extends object, V extends object> implements We
 
   set(key: K, value: V): this {
       const { left, right } = this
-      const oldVal = left.get(key)
-      const oldKey = right.get(value)
+      const oldVal = left.get(key) as V
+      const oldKey = right.get(value) as K
       if (left.has(key)) {
-          // @ts-ignore
           right.delete(oldVal)
       }
       if (right.has(value)) {
-          // @ts-ignore
           left.delete(oldKey)
       }
       left.set(key, value)
@@ -58,22 +54,20 @@ export default class WeakBiMap<K extends object, V extends object> implements We
       return this.left[Symbol.toStringTag]
   }
 
-  deleteValue(value: V) {
-      const key = this.right.get(value)
-      // @ts-ignore
+  deleteValue(value: V): boolean {
+      const key = this.right.get(value) as K
       if (!this.left.has(key)) {
           return false
       }
-      // @ts-ignore
       this.left.delete(key)
       return this.right.delete(value)       
   }
 
-  getKey(value: V) {
+  getKey(value: V): K | undefined {
       return this.right.get(value)
   }
 
-  hasValue(value: V) {
+  hasValue(value: V): boolean {
       return this.right.has(value)
   }
 
