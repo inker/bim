@@ -7,6 +7,9 @@
         "pretty": true,
         "lib": [ "dom", "es7" ],
         "declaration": true,
+        "strictNullChecks": true,
+        "noUnusedLocals": true,
+        "downlevelIteration": true,
         "alwaysStrict": true,
         "outDir": "lib"
     },
