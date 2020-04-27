@@ -1,0 +1,38 @@
+name: Release package
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+
+  publish-npm:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: 'https://registry.npmjs.org/'
+      - run: npm ci
+      - run: npm run build
+      - name: Publish to NPM
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+          npm config list
+          npm publish --access public 
+        env:
+          CI: true
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}

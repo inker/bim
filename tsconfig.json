@@ -1,17 +1,29 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "sourceMap": true,
-        // "watch": true,
-        "pretty": true,
-        "lib": [ "dom", "es7" ],
-        "declaration": true,
-        "strictNullChecks": true,
-        "noUnusedLocals": true,
-        "downlevelIteration": true,
-        "alwaysStrict": true,
-        "outDir": "lib"
-    },
-    "exclude": [ "node_modules", "test" ]
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "CommonJS",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "pretty": true,
+    "declaration": true,
+    "alwaysStrict": true,
+    // "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "downlevelIteration": true,
+    "lib": [
+      "dom",
+      "esnext" // for URLSearchParams
+    ],
+    "outDir": "dist"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "text"
+  ]
 }

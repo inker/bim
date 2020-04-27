@@ -2,12 +2,14 @@
   "name": "bim",
   "version": "1.1.2",
   "description": "A bidirectional map based on the ES6 Map & WeakMap objects",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf lib && tsc",
-    "build-publish": "sh build/publish.sh"
+    "test": "jest --no-cache",
+    "lint": "eslint './src/**/*.ts'",
+    "build": "rm -rf dist && tsc",
+    "version": "npm run build",
+    "release": "np --yolo --no-publish"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,12 @@
   "author": "Anton Veselyev <inker.gh@gmail.com> (https://github.com/inker)",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^2.6.1"
+    "@calipsa/eslint-config-typescript": "^1.6.0",
+    "@types/jest": "^25.2.1",
+    "eslint": "^6.8.0",
+    "jest": "^25.4.0",
+    "np": "^6.2.2",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
   }
 }
