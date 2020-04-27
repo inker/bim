@@ -1,94 +1,95 @@
 export default class BiMap<K, V> implements Map<K, V> {
-  private left: Map<K, V>
-  private right: Map<V, K>
+  #left: Map<K, V>
+  #right: Map<V, K>
 
   constructor(iterable?: Iterable<[K, V]>) {
-      this.left = new Map<K, V>(iterable as Iterable<[K, V]>)
-      this.right = new Map<V, K>()
-      for (const [k, v] of this.left) {
-          this.right.set(v, k)
-      }
+    this.#left = new Map<K, V>(iterable as Iterable<[K, V]>)
+    this.#right = new Map<V, K>()
+    for (const [k, v] of this.#left) {
+      this.#right.set(v, k)
+    }
   }
-  
+
   clear(): void {
-      this.left.clear()
-      this.right.clear()
+    this.#left.clear()
+    this.#right.clear()
   }
 
   delete(key: K): boolean {
-      const val = this.left.get(key) as V
-      if (!this.right.has(val)) {
-          return false
-      }
-      this.right.delete(val)
-      return this.left.delete(key)
+    const val = this.#left.get(key) as V
+    if (!this.#right.has(val)) {
+      return false
+    }
+    this.#right.delete(val)
+    return this.#left.delete(key)
   }
 
   entries(): IterableIterator<[K, V]> {
-      return this.left.entries()
+    return this.#left.entries()
   }
 
   forEach(callbackfn: (value: V, index: K, map: Map<K, V>) => void, thisArg?: any): void {
-      this.left.forEach(callbackfn, thisArg)
+    this.#left.forEach(callbackfn, thisArg)
   }
 
   get(key: K): V | undefined {
-      return this.left.get(key)
+    return this.#left.get(key)
   }
 
   has(key: K): boolean {
-      return this.left.has(key)
+    return this.#left.has(key)
   }
 
   keys(): IterableIterator<K> {
-      return this.left.keys()
+    return this.#left.keys()
   }
-  
+
   set(key: K, value: V): this {
-      const { left, right } = this
-      const oldVal = left.get(key) as V
-      const oldKey = right.get(value) as K
-      if (left.has(key)) {
-          right.delete(oldVal)
-      }
-      if (right.has(value)) {
-          left.delete(oldKey)
-      }
-      left.set(key, value)
-      right.set(value, key)
-      return this
+    const left = this.#left
+    const right = this.#right
+    const oldVal = left.get(key) as V
+    const oldKey = right.get(value) as K
+    if (left.has(key)) {
+      right.delete(oldVal)
+    }
+    if (right.has(value)) {
+      left.delete(oldKey)
+    }
+    left.set(key, value)
+    right.set(value, key)
+    return this
   }
 
   get size(): number {
-      return this.left.size
+    return this.#left.size
   }
 
   values(): IterableIterator<V> {
-      return this.left.values()
+    return this.#left.values()
   }
 
   [Symbol.iterator]() {
-      return this.left[Symbol.iterator]()
+    return this.#left[Symbol.iterator]()
   }
 
   get [Symbol.toStringTag]() {
-      return this.left[Symbol.toStringTag]
+    return this.#left[Symbol.toStringTag]
   }
 
   deleteValue(value: V): boolean {
-      const key = this.right.get(value) as K
-      if (!this.left.has(key)) {
-          return false
-      }
-      this.left.delete(key)
-      return this.right.delete(value)        
+    const key = this.#right.get(value) as K
+    if (!this.#left.has(key)) {
+      return false
+    }
+    this.#left.delete(key)
+    return this.#right.delete(value)
   }
 
   getKey(value: V): K | undefined {
-      return this.right.get(value)
+    return this.#right.get(value)
   }
 
   hasValue(value: V): boolean {
-      return this.right.has(value)
+    return this.#right.has(value)
   }
 }
