@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BiMap should accept array of entries 1`] = `
+Map {
+  "foo" => 3,
+  "bar" => 5,
+}
+`;
+
+exports[`BiMap should be empty at the start 1`] = `Map {}`;
+
+exports[`BiMap should change value 1`] = `
+Map {
+  "foo" => -1,
+  "bar" => 5,
+}
+`;
+
+exports[`BiMap should delete key correctly 1`] = `
+Map {
+  "bar" => 5,
+}
+`;
+
+exports[`BiMap should delete value correctly 1`] = `
+Map {
+  "bar" => 5,
+}
+`;
+
+exports[`BiMap should get entries 1`] = `
+Array [
+  Array [
+    "foo",
+    3,
+  ],
+  Array [
+    "bar",
+    5,
+  ],
+]
+`;
+
+exports[`BiMap should get entries by spread 1`] = `
+Array [
+  Array [
+    "foo",
+    3,
+  ],
+  Array [
+    "bar",
+    5,
+  ],
+]
+`;
+
+exports[`BiMap should get keys 1`] = `
+Array [
+  "foo",
+  "bar",
+]
+`;
+
+exports[`BiMap should get values 1`] = `
+Array [
+  3,
+  5,
+]
+`;
+
+exports[`BiMap should iterate entries (without .entries()) 1`] = `
+Array [
+  Array [
+    "foo",
+    3,
+  ],
+  Array [
+    "bar",
+    5,
+  ],
+]
+`;
+
+exports[`BiMap should iterate entries 1`] = `
+Array [
+  Array [
+    "foo",
+    3,
+  ],
+  Array [
+    "bar",
+    5,
+  ],
+]
+`;
+
+exports[`BiMap should iterate keys 1`] = `
+Array [
+  "foo",
+  "bar",
+]
+`;
+
+exports[`BiMap should iterate values 1`] = `
+Array [
+  3,
+  5,
+]
+`;
+
+exports[`BiMap should set correctly 1`] = `
+Map {
+  "foo" => 3,
+  "bar" => 5,
+}
+`;
+
+exports[`BiMap should should ignore non-existing keys 1`] = `
+Map {
+  "foo" => 3,
+  "bar" => 5,
+}
+`;
+
+exports[`BiMap should should ignore non-existing values 1`] = `
+Map {
+  "foo" => 3,
+  "bar" => 5,
+}
+`;
