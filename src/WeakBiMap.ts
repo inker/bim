@@ -1,6 +1,6 @@
 export default class WeakBiMap<K extends object, V extends object> implements WeakMap<K, V> {
-  #left: WeakMap<K, V>
-  #right: WeakMap<V, K>
+  readonly #left: WeakMap<K, V>
+  readonly #right: WeakMap<V, K>
 
   constructor(iterable?: Iterable<[K, V]>) {
     this.#left = new WeakMap<K, V>()

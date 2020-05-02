@@ -1,6 +1,6 @@
 export default class BiMap<K, V> implements Map<K, V> {
-  #left: Map<K, V>
-  #right: Map<V, K>
+  readonly #left: Map<K, V>
+  readonly #right: Map<V, K>
 
   constructor(iterable?: Iterable<[K, V]>) {
     this.#left = new Map<K, V>(iterable as Iterable<[K, V]>)
