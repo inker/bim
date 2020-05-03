@@ -16,7 +16,7 @@ class WeakBiMap<K extends object, V extends object> implements WeakMap<K, V>, Re
     }
   }
 
-  delete(key: K) {
+  delete(key: K): boolean {
     const val = this.#left.get(key)!
     if (!this.#right.has(val)) {
       return false
@@ -25,15 +25,15 @@ class WeakBiMap<K extends object, V extends object> implements WeakMap<K, V>, Re
     return this.#left.delete(key)
   }
 
-  get(key: K) {
+  get(key: K): V | undefined {
     return this.#left.get(key)
   }
 
-  has(key: K) {
+  has(key: K): boolean {
     return this.#left.has(key)
   }
 
-  set(key: K, value: V) {
+  set(key: K, value: V): this {
     const left = this.#left
     const right = this.#right
     const oldVal = left.get(key)!
@@ -53,7 +53,7 @@ class WeakBiMap<K extends object, V extends object> implements WeakMap<K, V>, Re
     return this.#left[Symbol.toStringTag]
   }
 
-  deleteValue(value: V) {
+  deleteValue(value: V): boolean {
     const key = this.#right.get(value)!
     if (!this.#left.has(key)) {
       return false
@@ -62,11 +62,11 @@ class WeakBiMap<K extends object, V extends object> implements WeakMap<K, V>, Re
     return this.#right.delete(value)
   }
 
-  getKey(value: V) {
+  getKey(value: V): K | undefined {
     return this.#right.get(value)
   }
 
-  hasValue(value: V) {
+  hasValue(value: V): boolean {
     return this.#right.has(value)
   }
 }
