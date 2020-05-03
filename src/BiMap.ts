@@ -5,9 +5,13 @@ class BiMap<K, V> implements Map<K, V>, ReverseMap<K, V> {
   readonly #right: Map<V, K>
 
   constructor(iterable?: Iterable<[K, V]>) {
-    this.#left = new Map<K, V>(iterable!)
+    this.#left = new Map<K, V>()
     this.#right = new Map<V, K>()
-    for (const [k, v] of this.#left) {
+    if (iterable === undefined) {
+      return
+    }
+    for (const [k, v] of iterable) {
+      this.#left.set(k, v)
       this.#right.set(v, k)
     }
   }
