@@ -6,6 +6,37 @@ describe('WeakBiMap', () => {
     expect(m).toMatchSnapshot()
   })
 
+  it('should set correctly', () => {
+    const a = { a: 1 }
+    const b = { b: 2 }
+    const c = { c: 3 }
+    const d = { d: 4 }
+    const m = new WeakBiMap<{ [key: string]: number }, { [key: string]: number }>()
+    m.set(a, c)
+    m.set(b, d)
+
+    expect(m.get(a)).toBe(c)
+    expect(m.getKey(c)).toBe(a)
+    expect(m.get(b)).toBe(d)
+    expect(m.getKey(d)).toBe(b)
+  })
+
+  it('should accept array of entries', () => {
+    const a = { a: 1 }
+    const b = { b: 2 }
+    const c = { c: 3 }
+    const d = { d: 4 }
+    const m = new WeakBiMap<{ [key: string]: number }, { [key: string]: number }>([
+      [a, c],
+      [b, d],
+    ])
+
+    expect(m.get(a)).toBe(c)
+    expect(m.getKey(c)).toBe(a)
+    expect(m.get(b)).toBe(d)
+    expect(m.getKey(d)).toBe(b)
+  })
+
   it('should get & delete key correctly', () => {
     const a = { a: 1 }
     const b = { b: 2 }
