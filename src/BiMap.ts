@@ -5,7 +5,7 @@ class BiMap<K, V> implements Map<K, V>, ReverseMap<K, V> {
   readonly #right: Map<V, K>
 
   constructor(iterable?: Iterable<[K, V]>) {
-    this.#left = new Map<K, V>(iterable as Iterable<[K, V]>)
+    this.#left = new Map<K, V>(iterable!)
     this.#right = new Map<V, K>()
     for (const [k, v] of this.#left) {
       this.#right.set(v, k)
@@ -18,7 +18,7 @@ class BiMap<K, V> implements Map<K, V>, ReverseMap<K, V> {
   }
 
   delete(key: K) {
-    const val = this.#left.get(key) as V
+    const val = this.#left.get(key)!
     if (!this.#right.has(val)) {
       return false
     }
@@ -49,8 +49,8 @@ class BiMap<K, V> implements Map<K, V>, ReverseMap<K, V> {
   set(key: K, value: V) {
     const left = this.#left
     const right = this.#right
-    const oldVal = left.get(key) as V
-    const oldKey = right.get(value) as K
+    const oldVal = left.get(key)!
+    const oldKey = right.get(value)!
     if (left.has(key)) {
       right.delete(oldVal)
     }
