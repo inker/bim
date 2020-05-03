@@ -1,4 +1,6 @@
-export default class BiMap<K, V> implements Map<K, V> {
+import ReverseMap from './ReverseMap'
+
+class BiMap<K, V> implements Map<K, V>, ReverseMap<K, V> {
   readonly #left: Map<K, V>
   readonly #right: Map<V, K>
 
@@ -15,7 +17,7 @@ export default class BiMap<K, V> implements Map<K, V> {
     this.#right.clear()
   }
 
-  delete(key: K): boolean {
+  delete(key: K) {
     const val = this.#left.get(key) as V
     if (!this.#right.has(val)) {
       return false
@@ -24,27 +26,27 @@ export default class BiMap<K, V> implements Map<K, V> {
     return this.#left.delete(key)
   }
 
-  entries(): IterableIterator<[K, V]> {
+  entries() {
     return this.#left.entries()
   }
 
-  forEach(callbackfn: (value: V, index: K, map: Map<K, V>) => void, thisArg?: any): void {
+  forEach(callbackfn: (value: V, index: K, map: Map<K, V>) => void, thisArg?: any) {
     this.#left.forEach(callbackfn, thisArg)
   }
 
-  get(key: K): V | undefined {
+  get(key: K) {
     return this.#left.get(key)
   }
 
-  has(key: K): boolean {
+  has(key: K) {
     return this.#left.has(key)
   }
 
-  keys(): IterableIterator<K> {
+  keys() {
     return this.#left.keys()
   }
 
-  set(key: K, value: V): this {
+  set(key: K, value: V) {
     const left = this.#left
     const right = this.#right
     const oldVal = left.get(key) as V
@@ -60,11 +62,11 @@ export default class BiMap<K, V> implements Map<K, V> {
     return this
   }
 
-  get size(): number {
+  get size() {
     return this.#left.size
   }
 
-  values(): IterableIterator<V> {
+  values() {
     return this.#left.values()
   }
 
@@ -76,7 +78,7 @@ export default class BiMap<K, V> implements Map<K, V> {
     return this.#left[Symbol.toStringTag]
   }
 
-  deleteValue(value: V): boolean {
+  deleteValue(value: V) {
     const key = this.#right.get(value) as K
     if (!this.#left.has(key)) {
       return false
@@ -85,11 +87,13 @@ export default class BiMap<K, V> implements Map<K, V> {
     return this.#right.delete(value)
   }
 
-  getKey(value: V): K | undefined {
+  getKey(value: V) {
     return this.#right.get(value)
   }
 
-  hasValue(value: V): boolean {
+  hasValue(value: V) {
     return this.#right.has(value)
   }
 }
+
+export default BiMap

@@ -1,4 +1,6 @@
-export default class WeakBiMap<K extends object, V extends object> implements WeakMap<K, V> {
+import ReverseMap from './ReverseMap'
+
+class WeakBiMap<K extends object, V extends object> implements WeakMap<K, V>, ReverseMap<K, V> {
   readonly #left: WeakMap<K, V>
   readonly #right: WeakMap<V, K>
 
@@ -14,12 +16,7 @@ export default class WeakBiMap<K extends object, V extends object> implements We
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  clear(): void {
-    console.error('method clear is deprecated')
-  }
-
-  delete(key: K): boolean {
+  delete(key: K) {
     const val = this.#left.get(key) as V
     if (!this.#right.has(val)) {
       return false
@@ -28,15 +25,15 @@ export default class WeakBiMap<K extends object, V extends object> implements We
     return this.#left.delete(key)
   }
 
-  get(key: K): V | undefined {
+  get(key: K) {
     return this.#left.get(key)
   }
 
-  has(key: K): boolean {
+  has(key: K) {
     return this.#left.has(key)
   }
 
-  set(key: K, value: V): this {
+  set(key: K, value: V) {
     const left = this.#left
     const right = this.#right
     const oldVal = left.get(key) as V
@@ -56,7 +53,7 @@ export default class WeakBiMap<K extends object, V extends object> implements We
     return this.#left[Symbol.toStringTag]
   }
 
-  deleteValue(value: V): boolean {
+  deleteValue(value: V) {
     const key = this.#right.get(value) as K
     if (!this.#left.has(key)) {
       return false
@@ -65,11 +62,13 @@ export default class WeakBiMap<K extends object, V extends object> implements We
     return this.#right.delete(value)
   }
 
-  getKey(value: V): K | undefined {
+  getKey(value: V) {
     return this.#right.get(value)
   }
 
-  hasValue(value: V): boolean {
+  hasValue(value: V) {
     return this.#right.has(value)
   }
 }
+
+export default WeakBiMap
