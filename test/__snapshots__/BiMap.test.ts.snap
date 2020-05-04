@@ -16,6 +16,8 @@ Map {
 }
 `;
 
+exports[`BiMap should clear 1`] = `Map {}`;
+
 exports[`BiMap should delete key correctly 1`] = `
 Map {
   "bar" => 5,
@@ -65,6 +67,19 @@ exports[`BiMap should get values 1`] = `
 Array [
   3,
   5,
+]
+`;
+
+exports[`BiMap should have working forEach 1`] = `
+Array [
+  Array [
+    "foo",
+    3,
+  ],
+  Array [
+    "bar",
+    5,
+  ],
 ]
 `;
 

@@ -102,6 +102,30 @@ describe('BiMap', () => {
     expect(m.hasValue(-1)).toBe(false)
   })
 
+  it('should have working forEach', () => {
+    const m = new BiMap([
+      ['foo', 3],
+      ['bar', 5],
+    ])
+
+    const arr: [string, number][] = []
+    m.forEach((v, k) => {
+      arr.push([k, v])
+    })
+
+    expect(arr).toMatchSnapshot()
+  })
+
+  it('should clear', () => {
+    const m = new BiMap([
+      ['foo', 3],
+      ['bar', 5],
+    ])
+
+    m.clear()
+    expect(m).toMatchSnapshot()
+  })
+
   it('should get keys', () => {
     const m = new BiMap([
       ['foo', 3],
