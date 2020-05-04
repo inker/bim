@@ -24,7 +24,7 @@
   "author": "Anton Veselyev <inker.gh@gmail.com> (https://github.com/inker)",
   "license": "ISC",
   "devDependencies": {
-    "@inker/eslint-config-typescript": "^1.0.0",
+    "@inker/eslint-config-typescript": "^1.1.1",
     "@types/jest": "^25.2.1",
     "eslint": "^6.8.0",
     "jest": "^25.4.0",
